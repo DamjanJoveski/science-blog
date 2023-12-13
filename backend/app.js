@@ -38,7 +38,6 @@ app.get('/articles/category/:category', async (req, res) => {
 })
 
 //get a single article
-
 app.get('/articles/id/:id', async (req, res) => {
     try {
         const query = "SELECT * FROM articles WHERE id = $1";
