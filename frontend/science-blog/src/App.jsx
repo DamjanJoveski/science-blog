@@ -8,6 +8,7 @@ import {NavBar} from "./NavBar.jsx";
 import {isMobile} from "react-device-detect";
 import {Article} from "./pages/articles/Article.jsx";
 import {useEffect, useState} from "react";
+import {Footer} from "./Footer.jsx";
 export  const App = () => {
 
     const [fact, setFact] = useState(null);
@@ -39,7 +40,7 @@ export  const App = () => {
                 <Route path="/home" element={<Home fact={fact}/>}/>
                 <Route path="/articles" element={<Articles/>}>
                     <Route index element={<Articles/>}/>
-                    <Route path="id/:id" element={<Article/>}/>
+                    <Route path="title/:title" element={<Article/>}/>
                     <Route path="category/:category" element={<Articles/>}/>
                 </Route>
                 <Route path="/about" element={<About/>} />
@@ -47,6 +48,7 @@ export  const App = () => {
                 <Route path="*" element={<NoPage/>} />
             </Routes>
             </main>
+            <Footer/>
         </div>
     );
 }

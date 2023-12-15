@@ -13,11 +13,11 @@ export const FactSection = ({fact}) => {
 
     return (
         <section>
-            <div className="w-full mx-auto p-4 flex flex-col h-screen mt-72 bg-[#DEDEDE]">
-                <h2 className="m-auto text-[#000] text-7xl drop-shadow-xl font-bold">
+            <div className="w-full mx-auto p-4 flex flex-col h-screen mt-72 bg-black">
+                <h2 className="m-auto text-[#DEDEDE] text-7xl drop-shadow-xl font-bold">
                     Fact of the day!
                 </h2>
-                {localFact ? <div className="m-auto text-gray-800 text-5xl drop-shadow-xl">
+                {localFact ? <div className="m-auto text-[#DEDEDE] text-5xl drop-shadow-xl">
                     <TypeIt
                         options={{
                             strings: [localFact],
@@ -26,7 +26,7 @@ export const FactSection = ({fact}) => {
                         }}
                     />
                 </div> :
-                    <div className="m-auto text-gray-800 text-5xl drop-shadow-xl">
+                    <div className="m-auto text-[#DEDEDE] text-5xl drop-shadow-xl">
                         <h3>Loading... refreshing the page might help</h3>
                     </div>
                 }

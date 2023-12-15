@@ -32,11 +32,11 @@ app.get('/articles/category/:category', async (req, res) => { //Get all articles
         console.error(error.message)
     }
 })
-app.get('/articles/id/:id', async (req, res) => { //Get a single article
+app.get('/articles/title/:title', async (req, res) => { //Get a single article
     try {
-        const query = "SELECT * FROM articles WHERE id = $1";
-        const {id} = req.params;
-        const article = await pool.query(query, [id])
+        const query = "SELECT * FROM articles WHERE title = $1";
+        const {title} = req.params;
+        const article = await pool.query(query, [title])
         res.json(article.rows)
     }
     catch (error) {

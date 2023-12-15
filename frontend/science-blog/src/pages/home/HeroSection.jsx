@@ -7,7 +7,7 @@ export const HeroSection = () => {
             <div className="mt-20 md:mt-52 max-w-[1450px] mx-auto flex justify-between items-center lg:py-0 ">
                 <div className="px-10 space-y-5 lg:py-6">
                     <h1 className="text-6xl text-[#DEDEDE] md:text-7xl max-w-xl font-serif w-11/12 sm:w-9/12">
-          <span className="underline decoration-black decoration-4">
+          <span className="underline decoration-[#DEDEDE] decoration-4">
             Science Stream
           </span>{" "}
                         is a place to read, learn and explore
