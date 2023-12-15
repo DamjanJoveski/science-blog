@@ -1,5 +1,10 @@
-export const Home = () => {
+import {HeroSection} from "./HeroSection.jsx";
+import {FactSection} from "./FactSection.jsx";
+export const Home = ({fact}) => {
     return (
-        <h1>Home page</h1>
+        <>
+            <HeroSection/>
+            <FactSection fact={fact}/>
+        </>
     )
 }
