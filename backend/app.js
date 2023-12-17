@@ -13,7 +13,8 @@ const corsOptions = {
     origin: [
         'https://science-blog-frontend.vercel.app',
         'https://science-blog-frontend-git-master-damjanjoveski.vercel.app',
-        'https://science-blog-frontend-nhru8q35a-damjanjoveski.vercel.app'
+        'https://science-blog-frontend-nhru8q35a-damjanjoveski.vercel.app',
+        'https://science-blog-frontend.vercel.app/'
     ],
 };
 
