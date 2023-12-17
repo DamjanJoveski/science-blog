@@ -7,7 +7,7 @@ export const CategoriesSidebar = ({selectedCategory, changeCategory}) => {
     }
 
     return (
-        <div className="w-full h-100% lg:w-1/6 ">
+        <div className="fixed w-full h-100% lg:w-1/6 ">
             <ul className="flex flex-row flex-wrap md:flex-col gap-4 md:gap-16 mt-36">
                 {categories.map((category) => {
                     let selectedStyling

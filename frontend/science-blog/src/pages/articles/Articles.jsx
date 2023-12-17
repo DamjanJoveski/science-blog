@@ -4,11 +4,11 @@ import { ArticlesPreview } from "./ArticlesPreview.jsx";
 import { NavLink } from "react-router-dom";
 import {Article} from "./Article.jsx";
 
-
-export const Articles = () => {
+export const Articles = ({getAndSetArticle, setArticle}) => {
     const [articles, setArticles] = useState([]);
-    const [article, setArticle] = useState();
+
     const [selectedCategory, setSelectedCategory] = useState("");
+
 
     const changeCategory = (category) => {
         setSelectedCategory(category);
@@ -53,18 +53,10 @@ export const Articles = () => {
         fetchArticles();
     }, []);
 
-    async function getArticle(title) {
-        try{
-            const response = await fetch(`http://localhost:3000/articles/title/${title}`)
-            if(response.ok){
-                const data = await response.json();
-                setArticle(data[0])
-            }
-        }
-        catch (error){
-            console.error(error.message)
-        }
+    function getArticle(title){
+        getAndSetArticle(title)
     }
+
 
     return (
         <section className="flex flex-col md:flex-row">
@@ -78,16 +70,22 @@ export const Articles = () => {
                         .toLocaleLowerCase()
                         .replace(/ /g, "-");
                     return (
-                        <NavLink onClick={() =>{getArticle(article.title)}} key={index} to={`/articles/title/${title}`}>
+                        <NavLink
+                            key={index}
+                            to={`/articles/title/${title}`}
+                            onClick={async () => await getArticle(article.title)}
+                        >
                             <ArticlesPreview
                                 title={article.title}
                                 description={article.description}
+                                image={article.image}
                             />
                         </NavLink>
+
                     );
                 })}
-
             </div>
+
         </section>
     );
 };

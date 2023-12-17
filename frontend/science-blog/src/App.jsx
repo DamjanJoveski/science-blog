@@ -9,11 +9,14 @@ import {isMobile} from "react-device-detect";
 import {Article} from "./pages/articles/Article.jsx";
 import {useEffect, useState} from "react";
 import {Footer} from "./Footer.jsx";
+import {PrivacyPolicy} from "./PrivacyPolicy.jsx";
 export  const App = () => {
 
     const [fact, setFact] = useState(null);
 
-    useEffect(() => {
+    const [article, setArticle] = useState(JSON.parse(localStorage.getItem('article')));
+
+    useEffect(() => { //fetches the fact of the day
         async function fetchData() {
             try {
                 const response = await fetch('http://localhost:3000/fact');
@@ -30,6 +33,28 @@ export  const App = () => {
         fetchData();
     }, []);
 
+    async function getAndSetArticle(title) {
+        try {
+            const response = await fetch(`http://localhost:3000/articles/title/${title}`);
+            if (response.ok) {
+                const data = await response.json();
+                setArticle(data[0]);
+                localStorage.setItem('article', JSON.stringify(data[0]));
+            } else {
+                throw new Error('Failed to fetch article');
+            }
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+    useEffect(() => {
+        if(article){
+            const storedArticle = JSON.parse(localStorage.getItem('article'));
+            setArticle(storedArticle)
+        }
+    }, []);
+
     return (
         <div className="flex flex-col min-h-screen">
             <NavBar isMobile={isMobile}/>
@@ -38,13 +63,14 @@ export  const App = () => {
                 <Route index element={<Home fact={fact}/>} />
                 <Route path="/" element={<Home fact={fact}/>}/>
                 <Route path="/home" element={<Home fact={fact}/>}/>
-                <Route path="/articles" element={<Articles/>}>
-                    <Route index element={<Articles/>}/>
-                    <Route path="title/:title" element={<Article/>}/>
-                    <Route path="category/:category" element={<Articles/>}/>
+                <Route path="/articles" element={<Articles getAndSetArticle={getAndSetArticle} setArticle={setArticle}/>}>
+                    <Route index element={<Articles getAndSetArticle={getAndSetArticle} setArticle={setArticle}/>}/>
+                    <Route path="category/:category" element={<Articles getAndSetArticle={getAndSetArticle} setArticle={setArticle}/>}/>
                 </Route>
+                <Route path="/articles/title/:title" element={<Article title={article && article.title} content={article && article.text_content} image={article && article.image} />} />
                 <Route path="/about" element={<About/>} />
                 <Route path="/contact" element={<Contact/>} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
                 <Route path="*" element={<NoPage/>} />
             </Routes>
             </main>

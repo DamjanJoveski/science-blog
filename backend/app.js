@@ -111,6 +111,7 @@ async function checkAndUpdateFact(){ //Check if there is a fact or if it's due u
     }
 }
 
+
 cron.schedule('1 0 * * *', () => {
     checkAndUpdateFact().catch((error) => {
         console.error(error.message)
