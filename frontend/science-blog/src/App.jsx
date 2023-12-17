@@ -19,7 +19,7 @@ export  const App = () => {
     useEffect(() => { //fetches the fact of the day
         async function fetchData() {
             try {
-                const response = await fetch('https://science-blog-backend.onrender.com/fact');
+                const response = await fetch('https://science-blog-backend-damjanjoveski.vercel.app/fact');
                 if (response.ok) {
                     const data = await response.json();
                     setFact(data);
@@ -35,7 +35,7 @@ export  const App = () => {
 
     async function getAndSetArticle(title) {
         try {
-            const response = await fetch(`https://science-blog-backend.onrender.com/${title}`);
+            const response = await fetch(`https://science-blog-backend-damjanjoveski.vercel.app/${title}`);
             if (response.ok) {
                 const data = await response.json();
                 setArticle(data[0]);
