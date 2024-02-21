@@ -21,7 +21,7 @@ export const Articles = ({getAndSetArticle, setArticle}) => {
         }
         else {
             try{
-                const response = await fetch(`http://localhost:3000/${category.toLowerCase()}`)
+                const response = await fetch(`http://localhost:3000/articles/category/${category.toLowerCase()}`)
                 if (response.ok) {
                     const data = await response.json();
                     setArticles(data);
@@ -37,7 +37,7 @@ export const Articles = ({getAndSetArticle, setArticle}) => {
 
     async function fetchArticles() {
         try {
-            const response = await fetch(`http://localhost:3000//articles`);
+            const response = await fetch(`http://localhost:3000/articles`);
             if (response.ok) {
                 const data = await response.json();
                 setArticles(data);

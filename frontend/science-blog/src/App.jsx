@@ -35,7 +35,7 @@ export  const App = () => {
 
     async function getAndSetArticle(title) {
         try {
-            const response = await fetch(`http://localhost:3000/${title}`);
+            const response = await fetch(`http://localhost:3000/articles/title/${title}`);
             if (response.ok) {
                 const data = await response.json();
                 setArticle(data[0]);
